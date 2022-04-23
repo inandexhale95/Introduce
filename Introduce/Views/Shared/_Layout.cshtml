@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Introduce</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Introduce.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Introduce</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link active" asp-area="" asp-controller="FreeBoard" asp-action="Index">FreeBoard</a></li>
+                        <li class="nav-item"><a class="nav-link active" asp-area="" asp-controller="Forum" asp-action="Index">Forum</a></li>
+                        <li class="nav-item"><a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Notice</a></li>
+
+                        @if (Context.User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">UserInfo</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">내 정보</a>
+                                    <a class="dropdown-item" href="#">내 정보수정 </a>
+                                    <a class="dropdown-item" href="#">나의 글</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">회원탈퇴</a>
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+
+                    @if (Context.User.Identity.IsAuthenticated)
+                    {
+                        <div class="d-flex">
+                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">LogOut</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex">
+                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Login</a>
+                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Register</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - Introduce - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
