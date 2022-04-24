@@ -130,14 +130,14 @@ namespace Introduce.Controllers
         }
 
         [HttpGet]
-        public IActionResult UpdateInfo()
+        public IActionResult Update()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult UpdateInfo(UpdateInfoViewModel model)
+        public IActionResult Update(UpdateInfoViewModel model)
         {
             string message = string.Empty;
 
@@ -163,9 +163,42 @@ namespace Introduce.Controllers
         }
 
         [HttpGet]
-        public IActionResult UserInfo()
+        public IActionResult MyInfo()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Withdrawn()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Withdrawn(WithdrawnViewModel model)
+        {
+            string message = string.Empty;
+
+            if (ModelState.IsValid)
+            {
+                if (_user.Withdrawn(model) > 0)
+                {
+                    await LogOutAsync();
+                    TempData["Message"] = "탈퇴가 성공적으로 이루어졌습니다.";
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    message = "회원탈퇴에 필요한 항목을 올바르게 입력해주세요.";
+                }
+            }
+            else
+            {
+                message = "회원탈퇴에 실패했습니다.";
+            }
+
+            return View(model);
         }
     }
 }

@@ -1,24 +1,22 @@
-﻿@model LoginViewModel
+﻿@model WithdrawnViewModel
 
-@{ 
-    ViewData["Title"] = "로그인";
+@{
+    ViewData["Title"] = "회원탈퇴";
 }
 
 <div class="container p-3">
 
-    <h4 class="text-center p-3 my-3 text-white">로그인</h4>
+    <h4 class="text-center p-3 my-3 text-white">회원탈퇴</h4>
 
     <div class="d-flex row-cols-3 justify-content-center align-items-center">
-        <form asp-controller="User" asp-action="Login">
+        <form asp-controller="User" asp-action="Withdrawn">
             <div asp-validation-summary="ModelOnly"></div>
 
             <div class="col-lg form-floating">
-                <input type="text" asp-for="UserId" class="form-control" placeholder="ID" autofocus>
-                <label class="form-label text-dark">ID</label>
+                <input type="text" asp-for="UserId" class="form-control" placeholder="User Id" autofocus>
+                <label class="form-label text-dark">User Id</label>
                 <span class="text-danger" asp-validation-for="UserId"></span>
             </div>
-
-            <div class="mt-2"></div>
 
             <div class="col-lg form-floating">
                 <input type="password" asp-for="Password" class="form-control" placeholder="Password">
@@ -28,7 +26,8 @@
 
             <hr class="my-4">
 
-            <button class="w-100 btn btn-primary btn-lg" type="submit">로그인</button>
+            <button class="w-100 btn btn-primary btn-lg" type="submit">회원탈퇴</button>
+
         </form>
     </div>
 

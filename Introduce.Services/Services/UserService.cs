@@ -85,6 +85,19 @@ namespace Introduce.Services.Services
             return _context.SaveChanges();
         }
 
+        private int Withdrawn(WithdrawnViewModel model)
+        {
+            var user = GetUserInfo(model.UserId);
+
+            if (user == null)
+            {
+                return 0;
+            }
+
+            _context.Users.Remove(user);
+            return _context.SaveChanges();
+        }
+
         #endregion
 
         bool IUser.MatchUser(LoginViewModel model)
@@ -110,6 +123,11 @@ namespace Introduce.Services.Services
         int IUser.Update(UpdateInfoViewModel model)
         {
             return Update(model);
+        }
+
+        int IUser.Withdrawn(WithdrawnViewModel model)
+        {
+            return Withdrawn(model);
         }
     }
 }

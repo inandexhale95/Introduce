@@ -28,13 +28,13 @@
                     {
                         <div class="d-flex">
                             <div class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">UserInfo</a>
+                                <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">@Context.User.Identity.Name</a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" asp-controller="User" asp-action="UserInfo">내 정보</a>
-                                    <a class="dropdown-item" asp-controller="User" asp-action="UpdateInfo">내 정보수정 </a>
+                                    <a class="dropdown-item" asp-controller="User" asp-action="MyInfo">내 정보</a>
+                                    <a class="dropdown-item" asp-controller="User" asp-action="Update">내 정보수정 </a>
                                     <a class="dropdown-item" href="#">나의 글</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">회원탈퇴</a>
+                                    <a class="dropdown-item" asp-controller="User" asp-action="Withdrawn">회원탈퇴</a>
                                 </div>
                             </div>
                         </div>

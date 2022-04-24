@@ -1,0 +1,50 @@
+﻿@model UpdateInfoViewModel
+
+@{ 
+    ViewData["Title"] = "사용자 정보수정";
+}
+
+<div class="d-flex justify-content-center">
+    <div class="row p-5">
+        <div class="col-lg-12">
+            <form method="post" asp-controller="User" asp-action="Update">
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+                <div class="col-lg">
+                    <div class="text-warning">사용자 아이디는 변경하실 수 없습니다.</div>
+                    <input type="text" class="form-control" asp-for="UserId" value="@Context.User.Identity.Name" readonly />
+                    <span class="text-danger" asp-validation-for="UserId"></span>
+                </div>
+
+                <div class="mt-2"></div>
+
+                <div class="form-floating col-lg">
+                    <input type="text" class="form-control" asp-for="UserName" placeholder="User name" />
+                    <label class="form-label text-dark">User Name</label>
+                    <span class="text-danger" asp-validation-for="UserName"></span>
+                </div>
+
+                <div class="mt-2"></div>
+
+                <div class="form-floating col-lg">
+                    <input type="text" class="form-control" asp-for="UserEmail" placeholder="User email" />
+                    <label class="form-label text-dark">User Email</label>
+                    <span class="text-danger" asp-validation-for="UserEmail"></span>
+                </div>
+
+                <div class="mt-2"></div>
+
+                <div class="form-floating col-lg">
+                    <input type="password" class="form-control" asp-for="Password" placeholder="Password" />
+                    <label class="form-label text-dark">Password</label>
+                    <span class="text-danger" asp-validation-for="Password"></span>
+                </div>
+
+                <hr />
+
+                <button type="submit" class="btn btn-success btn-lg w-100">정보수정</button>
+            </form>
+        </div>
+    </div>
+</div>
+    

@@ -1,6 +1,6 @@
 ﻿
 @{ 
-
+    ViewData["Title"] = "익명 게시판";
 }
 
 <main>
@@ -16,10 +16,15 @@
                         <label>Name</label>
                         <span class="text-danger"></span>
                     </div>
+                    <div class="form-floating">
+                        <input class="form-control" type="password" placeholder="Leave a PW here" />
+                        <label>Password</label>
+                        <span class="text-danger"></span>
+                    </div>
                 </div>
                 <div class="col-sm-8">
                     <div class="form-floating">
-                        <textarea class="form-control text-dark" placeholder="Leave a comment here"></textarea>
+                        <textarea class="form-control text-dark" style="height: 120px" placeholder="Leave a comment here"></textarea>
                         <label>Content</label>
                         <span class="text-danger"></span>
                     </div>
