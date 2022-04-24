@@ -1,30 +1,35 @@
-﻿
-@{ 
+﻿@model IEnumerable<FreeBoard>
+
+@{
     ViewData["Title"] = "익명 게시판";
+
 }
 
 <main>
     <div class="container p-3">
-        <div class="text-center p-3 my-3 text-white">
-            <h3>GuestBoard</h3>
+        <div class="text-center p-3 my-3 text-secondary">
+
+            <h3>FreeBoard</h3>
         </div>
-        <form method="post" asp-controller="" asp-action="">
+        <form method="post" asp-controller="FreeBoard" asp-action="Write">
+            <div class="text-danger" asp-validation-summary="All"></div>
+
             <div class="row text-dark">
                 <div class="col-sm-2 d-grid">
                     <div class="form-floating">
-                        <input class="form-control" type="text" placeholder="Leave a Name here" />
+                        <input class="form-control" type="text" name="Name" placeholder="Leave a Name here" />
                         <label>Name</label>
                         <span class="text-danger"></span>
                     </div>
                     <div class="form-floating">
-                        <input class="form-control" type="password" placeholder="Leave a PW here" />
+                        <input class="form-control" type="password" name="Password" placeholder="Leave a PW here" />
                         <label>Password</label>
                         <span class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-sm-8">
                     <div class="form-floating">
-                        <textarea class="form-control text-dark" style="height: 120px" placeholder="Leave a comment here"></textarea>
+                        <textarea class="form-control text-dark" name="Content" style="height: 120px" placeholder="Leave a comment here"></textarea>
                         <label>Content</label>
                         <span class="text-danger"></span>
                     </div>
@@ -33,17 +38,62 @@
                     <button class="btn btn-lg btn-primary" type="submit">등록</button>
                 </div>
             </div>
+
         </form>
     </div>
 
 
-    <div class="my-3 p-3 bg-dark text-white rounded shadow-sm border-light">
+
+    <div class="my-3 p-3 bg-white rounded shadow-sm border-light">
+
         <h6 class="border-bottom pb-2 mb-0">Recent updates</h6>
-        <div class="d-flex text-muted pt-3">
-            <object class="bd-placeholder-img flex-shrink-0 me-2 rounded" data="~/icons/user.svg" width="32" height="32" role="img" aria-label="Placeholder: 32x32" focusable="false"></object>
-            <p class="pb-3 mb-0 small lh-sm border-bottom text-white">
-                <strong class="d-block"></strong>
-            </p>
-        </div>
+
+        @foreach (var item in Model)
+        {
+            <div class="d-flex text-muted pt-3">
+                <object class="bd-placeholder-img flex-shrink-0 me-2 rounded" data="~/icons/user.svg" width="32" height="32" role="img" aria-label="Placeholder: 32x32" focusable="false"></object>
+
+                <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                    <div class="d-flex justify-content-between">
+                        <strong class="text-gray-dark">@item.Name</strong>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+                    </div>
+
+                    <span class="d-block">@item.Content</span>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <!-- ? -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">비밀번호 입력</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <form method="post" asp-controller="FreeBoard" asp-action="Remove">
+                            <div class="modal-body">
+                                <div class="col-lg form-floating">
+                                    <input type="password" class="form-control" name="Password" autofocus />
+                                    <input type="hidden" name="freeBoardSeq" value="@item.FreeBoardSeq" readonly />
+                                    <label class="form-label text-dark">Password</label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                                <button type="submit" class="btn btn-primary">삭제</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        }
+
     </div>
+
+    
+
 </main>

@@ -23,6 +23,7 @@ namespace Introduce.Services.Contexts
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<RoleByUser> RoleByUsers { get; set; }
+        public DbSet<FreeBoard> FreeBoards { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -74,6 +75,30 @@ namespace Introduce.Services.Contexts
                     rbu.UserId,
                     rbu.RoleId,
                 });
+
+            modelBuilder.Entity<FreeBoard>().ToTable("FreeBoard");
+            modelBuilder.Entity<FreeBoard>(entity =>
+            {
+                entity.HasKey(e => e.FreeBoardSeq);
+
+                entity.Property(e => e.FreeBoardSeq)
+                .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Name)
+                .IsRequired()
+                .HasColumnType("nvarchar(30)");
+
+                entity.Property(e => e.Password)
+                .IsRequired()
+                .HasColumnType("nvarchar(50)");
+
+                entity.Property(e => e.Content)
+                .IsRequired()
+                .HasColumnType("nvarchar(max)");
+
+                entity.Property(e => e.CreateDate)
+                .IsRequired();
+            });
 
             modelBuilder.Entity<User>()
                 .HasOne<RoleByUser>(u => u.RoleByUser)
