@@ -71,6 +71,20 @@ namespace Introduce.Services.Services
             return _context.SaveChanges();
         }
 
+        private int Update(UpdateInfoViewModel model)
+        {
+            var user = _context.Users
+                .FirstOrDefault(u => u.UserId.Equals(model.UserId));
+
+            _context.Users.Update(user);
+
+            user.UserName = model.UserName;
+            user.UserEmail = model.UserEmail;
+            user.Password = model.Password;
+
+            return _context.SaveChanges();
+        }
+
         #endregion
 
         bool IUser.MatchUser(LoginViewModel model)
@@ -91,6 +105,11 @@ namespace Introduce.Services.Services
         int IUser.Register(RegisterViewModel model)
         {
             return Register(model);
+        }
+
+        int IUser.Update(UpdateInfoViewModel model)
+        {
+            return Update(model);
         }
     }
 }

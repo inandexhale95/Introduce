@@ -128,5 +128,44 @@ namespace Introduce.Controllers
             ModelState.AddModelError(string.Empty, message);
             return View(model); 
         }
+
+        [HttpGet]
+        public IActionResult UpdateInfo()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateInfo(UpdateInfoViewModel model)
+        {
+            string message = string.Empty;
+
+            if (ModelState.IsValid)
+            {
+                if (_user.Update(model) > 0)
+                {
+                    TempData["Message"] = "회원정보 수정에 성공했습니다.";
+                    return RedirectToAction("Index", "User");
+                }
+                else
+                {
+                    message = "각 항목을 형식에 맞게 입력해주세요.";
+                }
+            }
+            else
+            {
+                message = "회원정보 수정에 실패했습니다.";
+            }
+
+            ModelState.AddModelError(string.Empty, message);
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult UserInfo()
+        {
+            return View();
+        }
     }
 }

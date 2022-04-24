@@ -9,5 +9,6 @@ namespace Introduce.Services.Interfaces
         User GetUserInfo(string userId);
         RoleByUser GetRoleByUser(string userId);
         int Register(RegisterViewModel model);
+        int Update(UpdateInfoViewModel model);
     }
 }
