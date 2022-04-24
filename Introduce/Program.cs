@@ -1,15 +1,41 @@
+using Introduce.Services.Contexts;
+using Introduce.Services.Interfaces;
+using Introduce.Services.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(connectionString: builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+builder.Services.AddScoped<SeedData>();
+builder.Services.AddTransient<IUser, UserService>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.AccessDeniedPath = "/User/Index";
+        options.LoginPath = "/User/Login";
+    });
+builder.Services.AddAuthorization();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// SeedData
+using (var scope = app.Services.CreateScope())
+{
+    SeedData seedData = scope.ServiceProvider.GetService<SeedData>();
+    seedData.PlantData();
+}
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -18,6 +44,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
