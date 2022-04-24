@@ -94,5 +94,39 @@ namespace Introduce.Controllers
 
             return RedirectToAction("Index", "User");
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult Register(RegisterViewModel model)
+        {
+            string message = string.Empty;
+
+            if (ModelState.IsValid)
+            {
+                if (_user.Register(model) > 0)
+                {
+                    TempData["Message"] = "회원가입 성공";
+                    return RedirectToAction("Login", "User");
+                } 
+                else
+                {
+                    message = "회원가입에 필요한 항목을 올바르게 입력해주세요.";
+                }
+            }
+            else
+            {
+                message = "회원가입에 실패했습니다.";
+            }
+
+            ModelState.AddModelError(string.Empty, message);
+            return View(model); 
+        }
     }
 }

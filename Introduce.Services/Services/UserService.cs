@@ -49,6 +49,28 @@ namespace Introduce.Services.Services
             return roleByUser;
         }
 
+        private int Register(RegisterViewModel model)
+        {
+            var user = new User
+            {
+                UserId = model.UserId,
+                UserName = model.UserName,
+                UserEmail = model.UserEmail,
+                Password = model.Password,
+                JoinedDate = DateTime.Now,
+            };
+
+            var roleByUser = new RoleByUser
+            {
+                UserId = user.UserId,
+                RoleId = "GeneralUser"
+            };
+
+            _context.Users.Add(user);
+            _context.RoleByUsers.Add(roleByUser);
+            return _context.SaveChanges();
+        }
+
         #endregion
 
         bool IUser.MatchUser(LoginViewModel model)
@@ -64,6 +86,11 @@ namespace Introduce.Services.Services
         RoleByUser IUser.GetRoleByUser(string userId)
         {
             return GetRoleByUser(userId);
+        }
+
+        int IUser.Register(RegisterViewModel model)
+        {
+            return Register(model);
         }
     }
 }

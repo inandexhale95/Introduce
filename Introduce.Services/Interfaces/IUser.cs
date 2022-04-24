@@ -8,5 +8,6 @@ namespace Introduce.Services.Interfaces
         bool MatchUser(LoginViewModel model);
         User GetUserInfo(string userId);
         RoleByUser GetRoleByUser(string userId);
+        int Register(RegisterViewModel model);
     }
 }
