@@ -19,7 +19,7 @@ namespace Introduce.Services.Services
             _context = context;
         }
 
-        #region privates methods
+        #region private methods
 
         IEnumerable<FreeBoard> GetFreeBoardList()
         {

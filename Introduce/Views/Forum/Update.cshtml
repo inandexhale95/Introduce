@@ -1,0 +1,42 @@
+﻿@model Forum
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="container p-3">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <form method="post" id="form1" asp-controller="Forum" asp-action="Update">
+                        <table class="table table-bordered flex-nowrap">
+                            <colgroup>
+                                <col style="width:100px" />
+                                <col style="width:auto" />
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th>제목</th>
+                                    <td><input type="text" class="w-100" asp-for="Title" /></td>
+                                </tr>
+                                <tr>
+                                    <th>내용</th>
+                                    <td><textarea class="form-control editor" asp-for="Content" rows="20"></textarea></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <input type="hidden" asp-for="ForumSeq" readonly/>
+                        <div class="d-flex justify-content-end">
+                            <button id="saveBtn" class="btn btn-primary">저장</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(".editor").trumbowyg();
+</script>

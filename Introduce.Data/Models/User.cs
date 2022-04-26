@@ -16,5 +16,6 @@ namespace Introduce.Data.Models
 
 
         public RoleByUser RoleByUser { get; set; }
+        public ICollection<Forum> Forums { get; set; }
     }
 }

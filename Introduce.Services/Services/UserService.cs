@@ -14,7 +14,7 @@ namespace Introduce.Services.Services
             _context = context;
         }
 
-        #region privates methods
+        #region private methods
 
         private bool MatchUser(LoginViewModel model)
         {

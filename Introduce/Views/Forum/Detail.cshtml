@@ -1,0 +1,44 @@
+﻿@model Forum
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="container p-3">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered flex-nowrap">
+                        <colgroup>
+                            <col style="width:100px" />
+                            <col style="width:auto" />
+                        </colgroup>
+                        <tbody class="text-dark">
+                            <tr>
+                                <th>제목</th>
+                                <td>@Model.Title</td>
+                            </tr>
+                            <tr>
+                                <th>@Model.UserId</th>
+                                <th>@Model.CreateDate</th>
+                            </tr>
+                            <tr>
+                                <th>내용</th>
+                                <td asp-for="Content">@Html.Raw(Model.Content)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-end">
+                    @if (Context.User.Identity.Name.Equals(Model.UserId))
+                    {
+                        <a class="btn btn-primary" asp-controller="Forum" asp-action="Update" asp-route-forumSeq="@Model.ForumSeq">수정</a>
+                        <a class="btn btn-secondary" asp-controller="Forum" asp-action="Remove" asp-route-forumSeq="@Model.ForumSeq">삭제</a>
+                    }
+                    <a class="btn btn-info" asp-controller="Forum" asp-action="Index">목록</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

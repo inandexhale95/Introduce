@@ -22,6 +22,36 @@ namespace Introduce.Services.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Introduce.Data.Models.Forum", b =>
+                {
+                    b.Property<int>("ForumSeq")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ForumSeq"), 1L, 1);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1000");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("ForumSeq");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Forum", (string)null);
+                });
+
             modelBuilder.Entity("Introduce.Data.Models.FreeBoard", b =>
                 {
                     b.Property<int>("FreeBoardSeq")
@@ -113,6 +143,17 @@ namespace Introduce.Services.Migrations
                     b.ToTable("User", (string)null);
                 });
 
+            modelBuilder.Entity("Introduce.Data.Models.Forum", b =>
+                {
+                    b.HasOne("Introduce.Data.Models.User", "User")
+                        .WithMany("Forums")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Introduce.Data.Models.RoleByUser", b =>
                 {
                     b.HasOne("Introduce.Data.Models.Role", "Role")
@@ -139,6 +180,8 @@ namespace Introduce.Services.Migrations
 
             modelBuilder.Entity("Introduce.Data.Models.User", b =>
                 {
+                    b.Navigation("Forums");
+
                     b.Navigation("RoleByUser")
                         .IsRequired();
                 });

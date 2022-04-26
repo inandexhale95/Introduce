@@ -24,6 +24,7 @@ namespace Introduce.Services.Contexts
         public DbSet<Role> Roles { get; set; }
         public DbSet<RoleByUser> RoleByUsers { get; set; }
         public DbSet<FreeBoard> FreeBoards { get; set; }
+        public DbSet<Forum> Forums { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -100,6 +101,29 @@ namespace Introduce.Services.Contexts
                 .IsRequired();
             });
 
+            modelBuilder.Entity<Forum>().ToTable("Forum");
+            modelBuilder.Entity<Forum>(entity =>
+            {
+                entity.HasKey(e => e.ForumSeq);
+                entity.Property(e => e.ForumSeq)
+                .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Title)
+                .IsRequired()
+                .HasColumnType("nvarchar(150)");
+
+                entity.Property(e => e.Content)
+                .IsRequired()
+                .HasColumnType("nvarchar(1000)");
+
+                entity.Property(e => e.UserId)
+                .IsRequired();
+
+                entity.Property(e => e.CreateDate)
+                .IsRequired();
+
+            });
+
             modelBuilder.Entity<User>()
                 .HasOne<RoleByUser>(u => u.RoleByUser)
                 .WithOne(rbu => rbu.User)
@@ -109,6 +133,11 @@ namespace Introduce.Services.Contexts
                 .HasMany<RoleByUser>(r => r.RoleByUsers)
                 .WithOne(rbu => rbu.Role)
                 .HasForeignKey(rbu => rbu.RoleId);
+
+            modelBuilder.Entity<Forum>()
+                .HasOne<User>(f => f.User)
+                .WithMany(u => u.Forums)
+                .HasForeignKey(f => f.UserId);
         }
     }
 }

@@ -5,9 +5,9 @@ VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Introduce", "Introduce\Introduce.csproj", "{01538138-556C-45C1-95A6-A556F86396C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Introduce.Data", "Introduce.Data\Introduce.Data.csproj", "{D9344A15-1E1D-4CBB-9E35-91706FA714F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Introduce.Data", "Introduce.Data\Introduce.Data.csproj", "{D9344A15-1E1D-4CBB-9E35-91706FA714F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Introduce.Services", "Introduce.Services\Introduce.Services.csproj", "{1C583177-4CFB-48DF-AC23-3AFF266E9DEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Introduce.Services", "Introduce.Services\Introduce.Services.csproj", "{1C583177-4CFB-48DF-AC23-3AFF266E9DEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

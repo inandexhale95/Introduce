@@ -21,7 +21,7 @@ namespace Introduce.Controllers
             _pagination = new FreeBoardPagination();
         }
 
-        #region privates method
+        #region private methods
 
         private async Task<FreeBoardPagination> GetPaginationAsync(int currentPage = 1)
         {
