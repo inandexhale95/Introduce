@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FreeBoard>
+﻿@model FreeBoardPagination
 
 @{
     ViewData["Title"] = "익명 게시판";
@@ -8,12 +8,10 @@
 <main>
     <div class="container p-3">
         <div class="text-center p-3 my-3 text-secondary">
-
             <h3>FreeBoard</h3>
         </div>
         <form method="post" asp-controller="FreeBoard" asp-action="Write">
             <div class="text-danger" asp-validation-summary="All"></div>
-
             <div class="row text-dark">
                 <div class="col-sm-2 d-grid">
                     <div class="form-floating">
@@ -35,10 +33,9 @@
                     </div>
                 </div>
                 <div class="col-sm-2 d-grid gap-2">
-                    <button class="btn btn-lg btn-primary" type="submit">등록</button>
+                    <button class="btn btn-lg btn-outline-primary" type="submit">등록</button>
                 </div>
             </div>
-
         </form>
     </div>
 
@@ -48,7 +45,7 @@
 
         <h6 class="border-bottom pb-2 mb-0">Recent updates</h6>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.FreeBoards)
         {
             <div class="d-flex text-muted pt-3">
                 <object class="bd-placeholder-img flex-shrink-0 me-2 rounded" data="~/icons/user.svg" width="32" height="32" role="img" aria-label="Placeholder: 32x32" focusable="false"></object>
@@ -56,7 +53,10 @@
                 <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                     <div class="d-flex justify-content-between">
                         <strong class="text-gray-dark">@item.Name</strong>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+                        <div>
+                            <span>@item.CreateDate</span>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+                        </div>
                     </div>
 
                     <span class="d-block">@item.Content</span>
@@ -91,9 +91,26 @@
                 </div>
             </div>
         }
-
     </div>
 
-    
+    <div>
+        <ul class="pagination justify-content-center">
+            @for (int i = 1; i <= Model.PageCount; i++)
+            {
+                <li class="page-item active">
+                    @if (i != Model.CurrentPageIndex)
+                    {
+                        <form method="post" asp-controller="FreeBoard" asp-action="Index" asp-route-currentPage="@i">
+                            <button type="submit" class="page-link">@i</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <button type="submit" class="page-link">@i</button>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
 
 </main>
