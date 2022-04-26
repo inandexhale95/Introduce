@@ -4,22 +4,23 @@
     ViewData["Title"] = "익명 게시판";
 }
 <main>
+
     <div class="container p-3">
+
         <div class="text-center p-3 my-3 text-secondary">
             <h3>FreeBoard</h3>
         </div>
+
         <form method="post" asp-controller="FreeBoard" asp-action="Write">
             <div class="row text-dark">
                 <div class="col-sm-2 d-grid">
                     <div class="form-floating">
                         <input class="form-control check" type="text" name="Name" placeholder="Leave a Name here" />
-                        <p></p>
                         <label>Name</label>
                         <span class="text-danger"></span>
                     </div>
                     <div class="form-floating">
                         <input class="form-control check" type="password" name="Password" placeholder="Leave a PW here" />
-                        <p></p>
                         <label>Password</label>
                         <span class="text-danger"></span>
                     </div>
@@ -27,7 +28,6 @@
                 <div class="col-sm-8">
                     <div class="form-floating">
                         <textarea class="form-control check" name="Content" style="height: 120px" placeholder="Leave a comment here"></textarea>
-                        <p></p>
                         <label>Content</label>
                         <span class="text-danger"></span>
                     </div>
@@ -37,6 +37,7 @@
                 </div>
             </div>
         </form>
+
     </div>
 
     <div class="my-3 p-3 bg-white rounded shadow-sm border-light">
@@ -89,26 +90,28 @@
                 </div>
             </div>
         }
-    </div>
 
-    <div>
-        <ul class="pagination justify-content-center">
-            @for (int i = 1; i <= Model.PageCount; i++)
-            {
-                <li class="page-item active">
+        <div class="mt-3">
+            <ul class="pagination justify-content-center">
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+
                     @if (i != Model.CurrentPageIndex)
                     {
-                        <form method="post" asp-controller="FreeBoard" asp-action="Index" asp-route-currentPage="@i">
-                            <button type="submit" class="page-link">@i</button>
-                        </form>
+                        <li class="page-item active">
+                            <form method="post" asp-controller="FreeBoard" asp-action="Index" asp-route-currentPage="@i">
+                                <button type="submit" class="page-link">@i</button>
+                            </form>
+                        </li>
                     }
                     else
                     {
-                        <button type="submit" class="page-link">@i</button>
+                        <li class="page-item">
+                            <button type="submit" class="page-link">@i</button>
+                        </li>
                     }
-                </li>
-            }
-        </ul>
+                }
+            </ul>
+        </div>
     </div>
-
 </main>

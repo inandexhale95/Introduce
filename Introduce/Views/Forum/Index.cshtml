@@ -31,7 +31,7 @@
                                     <div>
                                         <small>작성일</small>
                                     </div>
-                                    <span class="views-number">@item.CreateDate</span>
+                                    <span class="small">@item.CreateDate</span>
                                 </div>
                                 <div class="col-md-2 forum-info">
                                     <div>
@@ -46,18 +46,21 @@
                             <ul class="pagination justify-content-center">
                                 @for (int i = 1; i <= Model.PageCount; i++)
                                 {
-                                    <li class="page-item active">
-                                        @if (i != Model.CurrentPageIndex)
-                                        {
+
+                                    @if (i != Model.CurrentPageIndex)
+                                    {
+                                        <li class="page-item active">
                                             <form method="post" asp-controller="Forum" asp-action="Index" asp-route-currentPage="@i">
-                                                <button class="page-link btn btn-primary ms-1">@i</button>
+                                                <button class="page-link">@i</button>
                                             </form>
-                                        }
-                                        else
-                                        {
-                                            <button class="page-link btn btn-primary ms-1">@i</button>
-                                        }
-                                    </li>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="page-item">
+                                            <button class="page-link">@i</button>
+                                        </li>
+                                    }
                                 }
                             </ul>
                         </div>
@@ -76,7 +79,6 @@
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
