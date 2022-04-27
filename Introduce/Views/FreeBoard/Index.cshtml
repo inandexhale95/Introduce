@@ -5,41 +5,6 @@
 }
 <main>
 
-    <div class="container p-3">
-
-        <div class="text-center p-3 my-3 text-secondary">
-            <h3>FreeBoard</h3>
-        </div>
-
-        <form method="post" asp-controller="FreeBoard" asp-action="Write">
-            <div class="row text-dark">
-                <div class="col-sm-2 d-grid">
-                    <div class="form-floating">
-                        <input class="form-control check" type="text" name="Name" placeholder="Leave a Name here" />
-                        <label>Name</label>
-                        <span class="text-danger"></span>
-                    </div>
-                    <div class="form-floating">
-                        <input class="form-control check" type="password" name="Password" placeholder="Leave a PW here" />
-                        <label>Password</label>
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-sm-8">
-                    <div class="form-floating">
-                        <textarea class="form-control check" name="Content" style="height: 120px" placeholder="Leave a comment here"></textarea>
-                        <label>Content</label>
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-sm-2 d-grid gap-2">
-                    <button class="btn btn-lg btn-outline-primary" type="submit">등록</button>
-                </div>
-            </div>
-        </form>
-
-    </div>
-
     <div class="my-3 p-3 bg-white rounded shadow-sm border-light">
 
         <h6 class="border-bottom pb-2 mb-0">Recent updates</h6>
@@ -90,6 +55,10 @@
                 </div>
             </div>
         }
+
+        <div class="d-flex justify-content-end mt-3">
+            <a class="btn btn-lg btn-outline-primary" asp-controller="FreeBoard" asp-action="Write">등록</a>
+        </div>
 
         <div class="mt-3">
             <ul class="pagination justify-content-center">

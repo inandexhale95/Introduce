@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseSqlServer(connectionString: builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseSqlServer(connectionString: builder.Configuration.GetConnectionString("LocalConnection"));
 });
 builder.Services.AddScoped<SeedData>();
 builder.Services.AddTransient<IUser, UserService>();
