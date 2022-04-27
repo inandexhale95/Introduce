@@ -86,6 +86,12 @@ namespace Introduce.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult Write()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Write(ForumViewModel model)

@@ -11,7 +11,7 @@
                 <div class="text-danger" asp-validation-summary="ModelOnly"></div>
 
                 <div class="col-lg">
-                    <div class="text-warning">사용자 아이디는 변경하실 수 없습니다.</div>
+                    <div class="text-danger">사용자 아이디는 변경하실 수 없습니다.</div>
                     <input type="text" class="form-control" asp-for="UserId" value="@Context.User.Identity.Name" readonly />
                     <span class="text-danger" asp-validation-for="UserId"></span>
                 </div>
