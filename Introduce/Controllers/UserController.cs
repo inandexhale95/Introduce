@@ -68,12 +68,11 @@ namespace Introduce.Controllers
                                                        ExpiresUtc = DateTime.Now.AddDays(1)
                                                    });
 
-                    TempData["Message"] = "로그인 성공";
-                    return RedirectToAction("Index", "User");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    message = "로그인에 필요한 항목을 정확히 입력해주세요.";
+                    message = "아이디 혹은 비밀번호가 틀렸습니다.";
                 }
             }
             else
@@ -90,9 +89,7 @@ namespace Introduce.Controllers
         {
             await _httpContext.SignOutAsync();
 
-            TempData["Message"] = "로그아웃 되었습니다.";
-
-            return RedirectToAction("Index", "User");
+            return RedirectToAction("Login", "User");
         }
 
         [HttpGet]
@@ -146,7 +143,7 @@ namespace Introduce.Controllers
                 if (_user.Update(model) > 0)
                 {
                     TempData["Message"] = "회원정보 수정에 성공했습니다.";
-                    return RedirectToAction("Index", "User");
+                    return RedirectToAction("MyInfo", "User");
                 }
                 else
                 {

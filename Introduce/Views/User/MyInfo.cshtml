@@ -19,6 +19,7 @@
 @if (Context.User.Identity.IsAuthenticated)
 {
 <div class="container p-5">
+    <p class="d-flex justify-content-center">@TempData["Message"]</p>
     <div class="d-flex justify-content-center">
         <div class="text-danger">@($"{userId}({userDataInfos[0]})님의 권한은 {userRoleId}({userDataInfos[3]})입니다.")</div>
     </div>
