@@ -12,8 +12,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 builder.Services.AddScoped<SeedData>();
 builder.Services.AddTransient<IUser, UserService>();
-builder.Services.AddTransient<IFreeBoard, FreeBoardService>();
 builder.Services.AddTransient<IForum, ForumService>();
+builder.Services.AddTransient<IFreeBoard, FreeBoardService>();
+builder.Services.AddTransient<IPasswordHasher, PasswordHasher>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>

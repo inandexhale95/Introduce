@@ -8,19 +8,27 @@ namespace Introduce.Services.Services
     public class UserService : IUser
     {
         private readonly AppDbContext _context;
+        private readonly IPasswordHasher _hasher;
 
-        public UserService(AppDbContext context)
+        public UserService(AppDbContext context,
+                           IPasswordHasher hasher)
         {
             _context = context;
+            _hasher = hasher;
         }
 
         #region private methods
 
         private bool MatchUser(LoginViewModel model)
         {
-            return _context.Users
-                .Where(u => u.UserId.Equals(model.UserId) && u.Password.Equals(model.Password))
-                .FirstOrDefault() != null ? true : false;
+            var user = _context.Users
+                .Where(u => u.UserId.Equals(model.UserId))
+                .FirstOrDefault();
+
+            if (user == null)
+                return false;
+
+            return _hasher.CheckTheHasedPassword(model.UserId, model.Password, user.RngSalt, user.HashedPassword);
         }
 
         private User GetUserInfo(string userId)
@@ -51,12 +59,15 @@ namespace Introduce.Services.Services
 
         private int Register(RegisterViewModel model)
         {
+            var hashedPasswordInfo = _hasher.SetHashedPassword(model.UserId, model.Password);
+
             var user = new User
             {
                 UserId = model.UserId,
                 UserName = model.UserName,
                 UserEmail = model.UserEmail,
-                Password = model.Password,
+                RngSalt = hashedPasswordInfo.RngSalt,
+                HashedPassword = hashedPasswordInfo.HashedPassword,
                 JoinedDate = DateTime.Now,
             };
 
@@ -76,11 +87,17 @@ namespace Introduce.Services.Services
             var user = _context.Users
                 .FirstOrDefault(u => u.UserId.Equals(model.UserId));
 
+            if (user == null)
+                return 0;
+
+            var hashedPasswordInfo = _hasher.SetHashedPassword(model.UserId, model.Password);
+
             _context.Users.Update(user);
 
             user.UserName = model.UserName;
             user.UserEmail = model.UserEmail;
-            user.Password = model.Password;
+            user.RngSalt = hashedPasswordInfo.RngSalt;
+            user.HashedPassword = hashedPasswordInfo.HashedPassword;
 
             return _context.SaveChanges();
         }

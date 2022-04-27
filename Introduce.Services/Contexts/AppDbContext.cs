@@ -45,7 +45,11 @@ namespace Introduce.Services.Contexts
                 .IsRequired()
                 .HasColumnType("nvarchar(70)");
 
-                entity.Property(e => e.Password)
+                entity.Property(e => e.RngSalt)
+                .IsRequired()
+                .HasColumnType("nvarchar(100)");
+
+                entity.Property(e => e.HashedPassword)
                 .IsRequired()
                 .HasColumnType("nvarchar(100)");
 
