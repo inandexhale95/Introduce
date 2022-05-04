@@ -50,7 +50,8 @@ EF Core의 Fluent API 방식을 활용해 Migration을 생성한 후 각 클래�
 </br>
 
 ## :pushpin: Projects
-https://introduceportfolio.azurewebsites.net/
+~~https://introduceportfolio.azurewebsites.net/~~
+http://introduce-develop-blog.iptime.org/
 
 **기술 스택**
 <br/>
@@ -58,6 +59,6 @@ https://introduceportfolio.azurewebsites.net/
 <br/>
 <img src="https://img.shields.io/badge/Csharp-239120?style=flat&logo=csharp&logoColor=white"/> - ASP.NET Core / Entity Framework Core
 <br/>
-<img src="https://img.shields.io/badge/Azure-0078D4?style=flat&logo=microsoftAzure&logoColor=white"/> - SQL Server, WebApp
+~~<img src="https://img.shields.io/badge/Azure-0078D4?style=flat&logo=microsoftAzure&logoColor=white"/> - SQL Server, WebApp~~
 <br/>
 <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat&logo=bootstrap&logoColor=white"/>
