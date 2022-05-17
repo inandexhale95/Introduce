@@ -12,7 +12,7 @@ EF Core의 Fluent API 방식을 활용해 Migration을 생성한 후 각 클래�
 
 <br/>
 
-### 총 4개의 프로젝트로 구성되어 있습니다.
+### 총 3개의 프로젝트로 구성되어 있습니다.
 1. Introduce          : ASP.NET Core WebApp 프로젝트입니다. 
 2. Introduce.Data     : 웹 프로젝트의 Model과 ViewModel을 담고 있는 클래스 라이브러리 프로젝트 입니다.
 3. Introduce.Service  : 웹 프로젝트의 로직을 담고 있는 클래스 라이브러리 프로젝트 입니다.
