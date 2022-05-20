@@ -11,6 +11,7 @@
 EF Core의 Fluent API 방식을 활용해 Migration을 생성한 후 각 클래스 모델의 테이블을 생성하였습니다.
 
 <br/>
+![화면 캡처 2022-05-20 205339](https://user-images.githubusercontent.com/75681679/169522989-ac7ad107-d8d9-4c00-a972-7a7e4439348b.png)
 
 ### 총 3개의 프로젝트로 구성되어 있습니다.
 1. Introduce          : ASP.NET Core WebApp 프로젝트입니다. 
