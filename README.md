@@ -60,7 +60,7 @@ http://introduce-develop-blog.iptime.org/
 <br/>
 <img src="https://img.shields.io/badge/.NET6-512BD4?style=flat&logo=Dotnet&logoColor=white"/>
 <br/>
-<img src="https://img.shields.io/badge/Csharp-239120?style=flat&logo=csharp&logoColor=white"/> - ASP.NET Core / Entity Framework Core
+<img src="https://img.shields.io/badge/Csharp-239120?style=flat&logo=csharp&logoColor=white"/> - ASP.NET Core / Entity Framework Core (저녁엔 서버를 꺼두어 접속이 안될 수 있습니다)
 <br/>
 ~~<img src="https://img.shields.io/badge/Azure-0078D4?style=flat&logo=microsoftAzure&logoColor=white"/> - SQL Server, WebApp~~
 <br/>
