@@ -1,4 +1,4 @@
-# 포트폴리오
+# Simple Blog
 > Introduce Develop Blog
 
 </br>
@@ -46,7 +46,6 @@ EF Core의 Fluent API 방식을 활용해 Migration을 생성한 후 각 클래�
 
 ## :pushpin: Contact
 - 이메일: inandexhale95@naver.com
-- 블로그: https://blog.naver.com/inandexhale95
 - 깃헙: https://github.com/inandexhale95
 
 </br>
@@ -54,13 +53,13 @@ EF Core의 Fluent API 방식을 활용해 Migration을 생성한 후 각 클래�
 ## :pushpin: Projects
 ~~https://introduceportfolio.azurewebsites.net/~~
 <br/>
-http://introduce-develop-blog.iptime.org/
+~~http://introduce-develop-blog.iptime.org/~~
 
 **기술 스택**
 <br/>
 <img src="https://img.shields.io/badge/.NET6-512BD4?style=flat&logo=Dotnet&logoColor=white"/>
 <br/>
-<img src="https://img.shields.io/badge/Csharp-239120?style=flat&logo=csharp&logoColor=white"/> - ASP.NET Core / Entity Framework Core (저녁엔 서버를 꺼두어 접속이 안될 수 있습니다)
+<img src="https://img.shields.io/badge/Csharp-239120?style=flat&logo=csharp&logoColor=white"/> - ASP.NET Core / Entity Framework Core
 <br/>
 ~~<img src="https://img.shields.io/badge/Azure-0078D4?style=flat&logo=microsoftAzure&logoColor=white"/> - SQL Server, WebApp~~
 <br/>
